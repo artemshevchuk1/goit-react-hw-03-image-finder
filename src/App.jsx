@@ -14,8 +14,9 @@ export class App extends Component {
     page: 1,
     isModalOpen: false,
     modalImage: '',
+    totalPages: 0,
   };
-  totalPages = 0;
+
   componentDidUpdate(_, prevState) {
     const { query, page } = this.state;
     if (prevState.query !== query || prevState.page !== page) {
@@ -35,6 +36,7 @@ export class App extends Component {
   onSubmit = event => {
     event.preventDefault();
     this.setState({ query: event.target.elements.query.value, page: 1 });
+    // this.setState({ query: '', page: 1 }), не працює
   };
 
   handleLoadMore = () => {
@@ -48,7 +50,7 @@ export class App extends Component {
       this.setState({ modalImage: image });
       return;
     }
-    this.setState({  modalImage: '' });
+    this.setState({ modalImage: '' });
   };
 
   render() {
